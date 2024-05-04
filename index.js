@@ -8,15 +8,9 @@ const app = express()
 const PORT = process.env.PORT || 3000;
 const conn = process.env.CONN;
 
-const allowCrossDomain = (req, res, next) => {
-    res.header(`Access-Control-Allow-Origin`, `*`);
-    res.header(`Access-Control-Allow-Methods`, `GET,PUT,POST,DELETE`);
-    res.header(`Access-Control-Allow-Headers`, `Content-Type`);
-    next();
-};
+
 
 app.use(bodyParser.json())
-app.use(allowCrossDomain)
 app.use(bodyParser.urlencoded({extended: true}))
 
 
@@ -40,9 +34,6 @@ mongoose.connect(conn)
 
 const user = mongoose.model('mymodel', demoSchema, 'demodata')
 
-app.get('/',function(req,res){
-    res.render('index',{});
-});
 
 app.post("/login", (req, res) => {
     const body = req.body;
