@@ -40,6 +40,10 @@ mongoose.connect(conn)
 
 const user = mongoose.model('mymodel', demoSchema, 'demodata')
 
+app.get('/',function(req,res){
+    res.render('index',{});
+});
+
 app.post("/login", (req, res) => {
     const body = req.body;
     const username = body.username;
